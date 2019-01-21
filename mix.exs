@@ -63,7 +63,7 @@ defmodule SpandexDatadog.MixProject do
       {:inch_ex, github: "rrrene/inch_ex", only: [:dev, :test]},
       {:spandex, "~> 2.3"},
       {:httpoison, "~> 0.13", only: :test},
-      {:msgpax, "~> 2.0"}
+      {:msgpax, github: "christopheonce/msgpax", ref: "45fdc31452f2ee4c68cc5fe48df7f5404bbed5db"}
     ]
   end
 end
