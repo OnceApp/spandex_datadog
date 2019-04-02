@@ -280,15 +280,11 @@ defmodule SpandexDatadog.ApiServer do
   defp add_http_data(meta, %{http: nil}), do: meta
 
   defp add_http_data(meta, %{http: http}) do
-    status_code =
-      if http[:status_code] do
-        to_string(http[:status_code])
-      end
-
-    meta
-    |> Map.put("http.url", http[:url])
-    |> Map.put("http.status_code", status_code)
-    |> Map.put("http.method", http[:method])
+    Keyword.keys(http)
+    |> Enum.reduce(
+      meta,
+      fn key, acc -> Map.put(acc, "http.#{to_string(key)}", to_string(Keyword.get(http, key))) end
+    )
   end
 
   @spec add_sql_data(map, Span.t()) :: map
